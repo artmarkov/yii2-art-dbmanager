@@ -35,13 +35,16 @@ class DbmanagerModule extends \yii\base\Module
         if (!StringHelper::endsWith($this->dumpPath, '/', false)) {
             $this->dumpPath .= '/';
         }
+         if (!file_exists($this->dumpPath)) {
+            mkdir($this->dumpPath);
+            chmod($this->dumpPath, '777');
+        }
         if (!is_dir($this->dumpPath)) {
             throw new InvalidConfigException('Path is not directory');
         }
         if (!is_writable($this->dumpPath)) {
             throw new InvalidConfigException('Path is not writable! Check chmod!');
         }
-        
         parent::init();
 
         // custom initialization code goes here

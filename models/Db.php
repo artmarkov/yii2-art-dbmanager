@@ -40,7 +40,9 @@ class Db extends Model
                 Yii::$app->session->setFlash('crudMessage', Yii::t('art/dbmanager', 'No database connection.'));
             }
             $db->password = str_replace("(","\(",$db->password);
-            exec('mysql --host=' . $this->getDsnAttribute('host', $db->dsn) . ' --user=' . $db->username . ' --password=' . $db->password . ' ' . $this->getDsnAttribute('dbname', $db->dsn) . ' < ' . $path);
+            //$command = "mysql -u'" . $db->username . "' " . $this->getDsnAttribute('dbname', $db->dsn) . " -p'" . $db->password . "' < " . $path;
+            $command = 'mysql --host=' . $this->getDsnAttribute('host', $db->dsn) . ' --user=' . $db->username . ' --password=' . $db->password . ' ' . $this->getDsnAttribute('dbname', $db->dsn) . ' < ' . $path;
+            exec($command);           
             Yii::$app->session->setFlash('crudMessage', Yii::t('art/dbmanager', "Dump {path} successfully imported.", ['path' => $path]));
         } else {
             Yii::$app->session->setFlash('crudMessage', Yii::t('art/dbmanager', 'The specified path does not exist.'));
@@ -66,7 +68,9 @@ class Db extends Model
                 }
                 //Экранируем скобку которая есть в пароле
                 $db->password = str_replace("(","\(",$db->password);
-                exec('mysqldump --host=' . $this->getDsnAttribute('host', $db->dsn) . ' --user=' . $db->username . ' --password=' . $db->password . ' ' . $this->getDsnAttribute('dbname', $db->dsn) . ' --skip-add-locks > ' . $filePath);
+                //$command = "mysqldump -u'" . $db->username . "' " . $this->getDsnAttribute('dbname', $db->dsn) . " -p'" . $db->password . "' > " . $filePath;
+                  $command = 'mysqldump --host=' . $this->getDsnAttribute('host', $db->dsn) . ' --user=' . $db->username . ' --password=' . $db->password . ' ' . $this->getDsnAttribute('dbname', $db->dsn) . ' --skip-add-locks > ' . $filePath;
+                exec($command);
                 Yii::$app->session->setFlash('crudMessage', Yii::t('art/dbmanager', "Export completed successfully. File {fileName} in the {path} folder.", ['fileName' => $fileName, 'path' => $path]));
             } else {
                 Yii::$app->session->setFlash('crudMessage', Yii::t('art/dbmanager', 'The path must be a folder.'));
