@@ -37,7 +37,7 @@ class DbmanagerModule extends \yii\base\Module
         }
          if (!file_exists($this->dumpPath)) {
             mkdir($this->dumpPath);
-            chmod($this->dumpPath, '777');
+            chmod($this->dumpPath, 0755);
         }
         if (!is_dir($this->dumpPath)) {
             throw new InvalidConfigException('Path is not directory');
