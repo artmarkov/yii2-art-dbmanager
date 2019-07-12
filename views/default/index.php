@@ -15,13 +15,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-sm-12">
             <h3 class="lte-hide-title page-title"><?= Html::encode($this->title) ?></h3>
-            <?= Html::a(Yii::t('art/dbmanager', 'Create Dump'), ['/dbmanager/default/export'], ['class' => 'btn btn-sm btn-primary']) ?>
+            <?= Html::a(Yii::t('art/dbmanager', 'Create Dump'), ['/dbmanager/default/export'], ['class' => 'btn btn-sm btn-success']) ?>
             
             <?= Html::a(Yii::t('art/dbmanager', 'Delete All Dump'), ['/dbmanager/default/delete-all'], [
                     'title' => Yii::t('art/dbmanager', 'Delete All Dump'),
                     'data-method' => 'post',
                     'data-confirm' => Yii::t('art/dbmanager', 'All database entries will be deleted. Are you sure?'),
-                    'class' => 'btn btn-sm btn-default',
+                    'class' => 'btn btn-sm btn-danger',
                 ]) ?>
         </div>
     </div>
@@ -98,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 [
                                     'title' => Yii::t('art/dbmanager', 'Import'),
                                     'data-confirm' => Yii::t('art/dbmanager', 'All database entries will be overwritten. Are you sure?'),
-                                    'class' => 'btn btn-sm btn-primary',
+                                    'class' => 'btn btn-sm btn-warning',
                                 ]);
                         },
                     ],
@@ -113,7 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'title' => Yii::t('art', 'Delete'),
                                     'data-method' => 'post',
                                     'data-confirm' => Yii::t('art/dbmanager', 'The database dump will be deleted. Are you sure?'),
-                                    'class' => 'btn btn-sm btn-default',
+                                    'class' => 'btn btn-sm btn-danger',
                                 ]);
                         },
                     ],
