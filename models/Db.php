@@ -15,7 +15,7 @@ class Db extends Model
             $arr[] = array(
                 'dump' => $file,
                 'size' => Yii::$app->formatter->asSize(filesize($file)),
-                'create_at' => Yii::$app->formatter->asDatetime(filectime($file)),
+                'create_at' => Yii::$app->formatter->asDatetime(filectime($file), 'php:Y-m-d h:i:s'),
                 'type' => pathinfo($file, PATHINFO_EXTENSION),
             );
         }
